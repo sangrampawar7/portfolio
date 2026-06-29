@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sangram Pawar | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --pink: #e91e63;
+            --dark: #333333;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f9f9f9;
+            color: var(--dark);
+        }
+
+        .navbar {
+            background-color: var(--dark);
+        }
+
+        .navbar-brand {
+            color: var(--pink) !important;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 0.9rem;
+            padding-left: 12px !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: skyblue !important;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        #home {
+            background: url('background.jpg') center/cover no-repeat;
+            background-color: #444;
+            /* fallback */
+            min-height: 480px;
+            color: #fff;
+            padding-top: 100px;
+            padding-bottom: 60px;
+        }
+
+        #home h3 {
+            font-size: 1.3rem;
+        }
+
+        #home h1 {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            color: var(--pink);
+            margin: 10px 0;
+            transition: color 0.4s;
+        }
+
+        #home h1:hover {
+            color: #000;
+        }
+
+        #home p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .btn-pink {
+            background: var(--pink);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn-pink:hover {
+            background: #c2185b;
+            color: #fff;
+        }
+
+        .btn-outline-light:hover {
+            background: #fff;
+            color: #333;
+        }
+
+
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--pink);
+            margin: 10px auto 0;
+        }
+
+        .profile-img-wrap {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .12);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.4s;
+        }
+
+        .profile-img-wrap:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-img-wrap img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .about-text:hover {
+            color: green;
+            transition: color 0.4s;
+        }
+
+
+        .skill-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
+            transition: transform 0.4s, background-color 0.6s;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.1);
+            background-color: aqua;
+        }
+
+        .skill-card i {
+            font-size: 2.2rem;
+            color: var(--pink);
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+            transition: transform 0.4s, background-color 0.6s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            background-color: #e0f7fa;
+        }
+
+        .project-card .badge-pink {
+            background: var(--pink);
+            color: #fff;
+        }
+
+
+        .contact-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 35px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .contact-box input:focus,
+        .contact-box textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, .15);
+        }
+
+        .submit-btn {
+            background: var(--pink);
+            color: #fff;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #c2185b;
+        }
+
+
+        footer {
+            background: var(--dark);
+            color: #fff;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">SANGRAM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="d-flex align-items-center">
+        <div class="container ps-lg-5">
+            <h3>Hi, I'M</h3>
+            <h1>SANGRAM PAWAR</h1>
+            <p>I build beautiful, responsive and user-friendly<br>websites using HTML, CSS and JavaScript.</p>
+            <div class="mt-4 d-flex flex-wrap gap-3">
+                <a href="#projects" class="btn btn-pink">View Projects</a>
+                <a href="#contact" class="btn btn-outline-light">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container py-5">
+        <h2 class="section-title">About Me</h2>
+        <div class="row align-items-center g-4">
+            <div class="col-12 col-md-4">
+                <div class="profile-img-wrap">
+                    <img src="passport1.jpg" alt="Sangram Pawar"
+                        onerror="this.src='https://via.placeholder.com/220x220?text=SP'" />
+                </div>
+            </div>
+            <div class="col-12 col-md-8 about-text">
+                <h3 class="mb-3">Hello! I'm SANGRAM PAWAR</h3>
+                <p>I am a passionate Frontend Developer who loves to create beautiful and functional websites.
+                    I enjoy turning ideas into reality through code.</p>
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-1"><strong>Name:</strong> Sangram Pawar</li>
+                    <li class="mb-1"><strong>Email:</strong> sangram.m.pawar55@gmail.com</li>
+                    <li class="mb-1"><strong>From:</strong> Newasa, Ahilyanagar</li>
+                </ul>
+                <a href="#contact" class="btn btn-pink mt-3">Hire Me</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="skills" class="container py-5">
+        <h2 class="section-title">My Skills</h2>
+        <div class="row g-4 justify-content-center">
+            <!-- HTML -->
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="skill-card">
+                    <i class="bi bi-filetype-html"></i>
+                    <h5 class="mt-2">HTML</h5>
+                    <div class="progress mt-2" style="height:8px;">
+                        <div class="progress-bar" style="width:90%;background:var(--pink);"></div>
+                    </div>
+                    <small class="text-muted">90%</small>
+                </div>
+            </div>
+            <!-- CSS -->
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="skill-card">
+                    <i class="bi bi-filetype-css"></i>
+                    <h5 class="mt-2">CSS</h5>
+                    <div class="progress mt-2" style="height:8px;">
+                        <div class="progress-bar" style="width:85%;background:var(--pink);"></div>
+                    </div>
+                    <small class="text-muted">85%</small>
+                </div>
+            </div>
+            <!-- JS -->
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="skill-card">
+                    <i class="bi bi-filetype-js"></i>
+                    <h5 class="mt-2">JavaScript</h5>
+                    <div class="progress mt-2" style="height:8px;">
+                        <div class="progress-bar" style="width:80%;background:var(--pink);"></div>
+                    </div>
+                    <small class="text-muted">80%</small>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="skill-card">
+                    <i class="bi bi-bootstrap"></i>
+                    <h5 class="mt-2">Bootstrap</h5>
+                    <div class="progress mt-2" style="height:8px;">
+                        <div class="progress-bar" style="width:75%;background:var(--pink);"></div>
+                    </div>
+                    <small class="text-muted">75%</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects" class="container py-5">
+        <h2 class="section-title">My Projects</h2>
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="project-card h-100 p-4 text-center">
+                    <i class="bi bi-person-vcard fs-1 text-danger mb-3 d-block"></i>
+                    <h5>Portfolio Website</h5>
+                    <p class="text-muted small">A personal website built with HTML &amp; CSS</p>
+                    <span class="badge badge-pink">HTML</span>
+                    <span class="badge badge-pink ms-1">CSS</span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="project-card h-100 p-4 text-center">
+                    <i class="bi bi-cart4 fs-1 text-danger mb-3 d-block"></i>
+                    <h5>E-commerce Website</h5>
+                    <p class="text-muted small">Responsive online store</p>
+                    <span class="badge badge-pink">HTML</span>
+                    <span class="badge badge-pink ms-1">CSS</span>
+                    <span class="badge badge-pink ms-1">JS</span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="project-card h-100 p-4 text-center">
+                    <i class="bi bi-speedometer2 fs-1 text-danger mb-3 d-block"></i>
+                    <h5>Dashboard Design</h5>
+                    <p class="text-muted small">Modern admin UI</p>
+                    <span class="badge badge-pink">Bootstrap</span>
+                    <span class="badge badge-pink ms-1">JS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="container py-5">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-box mx-auto" style="max-width:750px;">
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                    <input type="text" placeholder="Your Name" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <input type="email" placeholder="Your Email" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+            </div>
+            <div class="text-center">
+                <button class="submit-btn">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>© 2026 Sangram Pawar | Portfolio Website</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+                // close mobile menu
+                const nav = document.getElementById('navMenu');
+                if (nav.classList.contains('show')) {
+                    new bootstrap.Collapse(nav).hide();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
