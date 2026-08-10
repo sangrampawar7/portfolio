@@ -1,411 +1,1606 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sangram Pawar | Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <style>
         :root {
-            --pink: #e91e63;
-            --dark: #333333;
+            --bg: #07111f;
+            --bg2: #0b1728;
+            --card: rgba(255, 255, 255, .055);
+            --text: #eef6ff;
+            --muted: #9fb0c5;
+            --primary: #00d4ff;
+            --secondary: #7c5cff;
+            --border: rgba(255, 255, 255, .10);
+        }
+
+        * {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #f9f9f9;
-            color: var(--dark);
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
+        /* NAVBAR */
+
         .navbar {
-            background-color: var(--dark);
+            background: rgba(7, 17, 31, .75) !important;
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
         }
 
         .navbar-brand {
-            color: var(--pink) !important;
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
-
-        .navbar-nav .nav-link {
             color: #fff !important;
-            font-size: 0.9rem;
-            padding-left: 12px !important;
+            font-weight: 800;
+            letter-spacing: 2px;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: skyblue !important;
+        .navbar-brand span {
+            color: var(--primary);
+        }
+
+        .nav-link {
+            color: #cbd8e7 !important;
+            font-weight: 600;
+            margin-left: 12px;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: "";
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 3px;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: .3s;
+        }
+
+        .nav-link:hover:after {
+            transform: scaleX(1);
         }
 
         .navbar-toggler {
-            border-color: rgba(255, 255, 255, 0.4);
+            border-color: var(--border);
         }
 
         .navbar-toggler-icon {
             filter: invert(1);
         }
 
-        #home {
-            background: url('background.jpg') center/cover no-repeat;
-            background-color: #444;
-            /* fallback */
-            min-height: 480px;
-            color: #fff;
-            padding-top: 100px;
-            padding-bottom: 60px;
+        /* COMMON */
+
+        section {
+            padding: 100px 0;
         }
 
-        #home h3 {
-            font-size: 1.3rem;
+        .glass {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .16);
         }
 
-        #home h1 {
-            font-size: clamp(2rem, 7vw, 3.5rem);
-            color: var(--pink);
-            margin: 10px 0;
-            transition: color 0.4s;
+        .gradient-text {
+            background: linear-gradient(90deg,
+                    var(--primary),
+                    #fff,
+                    var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
-        #home h1:hover {
-            color: #000;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 212, 255, .28);
+            background: rgba(0, 212, 255, .07);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: .82rem;
+            font-weight: 700;
         }
 
-        #home p {
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .btn-pink {
-            background: var(--pink);
-            color: #fff;
-            font-weight: bold;
-            border: none;
-        }
-
-        .btn-pink:hover {
-            background: #c2185b;
-            color: #fff;
-        }
-
-        .btn-outline-light:hover {
-            background: #fff;
-            color: #333;
-        }
-
-
-        .section-title {
+        .section-heading {
             text-align: center;
-            margin: 50px 0 30px;
-            font-size: 2rem;
-            text-transform: uppercase;
+            margin-bottom: 55px;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--pink);
-            margin: 10px auto 0;
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 850;
+            margin: 12px 0;
         }
 
-        .profile-img-wrap {
+        .section-heading p {
+            color: var(--muted);
+            max-width: 680px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* BUTTONS */
+
+        .btn-main {
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    #00a9ff);
+            color: #00121d;
+            border: 0;
+            font-weight: 800;
+            padding: 13px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, .18);
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+            color: #00121d;
+        }
+
+        .btn-ghost {
+            color: #fff;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .04);
+            padding: 13px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .btn-ghost:hover {
             background: #fff;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .12);
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.4s;
+            color: #07111f;
         }
 
-        .profile-img-wrap:hover {
-            transform: scale(1.05);
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+
+            background:
+                linear-gradient(90deg,
+                    rgba(7, 17, 31, .96),
+                    rgba(7, 17, 31, .72)),
+                url("background.jpg") center/cover no-repeat;
         }
 
-        .profile-img-wrap img {
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 212, 255, .28);
+            background: rgba(0, 212, 255, .07);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6.4rem);
+            line-height: .95;
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin: 22px 0;
+        }
+
+        .hero h2 {
+            color: #c6d4e4;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            font-weight: 500;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.9;
+        }
+
+        .hero-card {
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .05);
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+        }
+
+        .hero-card img {
             width: 100%;
-            max-width: 220px;
-            border-radius: 50%;
+            height: 510px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 22px;
+            display: block;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: -20px;
+            bottom: 25px;
+            background: rgba(10, 25, 43, .92);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+        }
+
+        .company {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* ABOUT */
+
+        .about-img {
+            padding: 10px;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 18px;
+            max-height: 430px;
             object-fit: cover;
         }
 
-        .about-text:hover {
-            color: green;
-            transition: color 0.4s;
+        .about-copy p {
+            color: var(--muted);
+            line-height: 1.9;
         }
 
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .info-item {
+            padding: 14px;
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .info-item small {
+            display: block;
+            color: #71859d;
+            margin-bottom: 4px;
+        }
+
+        /* STATS */
+
+        .stats {
+            margin-top: 30px;
+        }
+
+        .stat {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .stat p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* EXPERIENCE */
+
+        .timeline {
+            border-left: 2px solid rgba(0, 212, 255, .22);
+            margin-left: 15px;
+            padding-left: 35px;
+        }
+
+        .experience {
+            padding: 32px;
+            position: relative;
+            transition: .35s;
+        }
+
+        .experience:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, .35);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -44px;
+            top: 36px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 0 6px rgba(0, 212, 255, .10);
+        }
+
+        .date {
+            color: #7f92a9;
+            font-size: .9rem;
+        }
+
+        .experience ul {
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        /* SKILLS */
 
         .skill-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 25px 15px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
-            transition: transform 0.4s, background-color 0.6s;
+            height: 100%;
+            padding: 25px;
+            transition: .35s;
         }
 
         .skill-card:hover {
-            transform: scale(1.1);
-            background-color: aqua;
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, .35);
         }
 
-        .skill-card i {
-            font-size: 2.2rem;
-            color: var(--pink);
+        .skill-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(0, 212, 255, .08);
+            color: var(--primary);
+            font-size: 1.6rem;
         }
+
+        .skill-card h5 {
+            margin-top: 18px;
+            font-weight: 800;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .progress {
+            height: 7px;
+            background: #18263a;
+            border-radius: 20px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg,
+                    var(--primary),
+                    var(--secondary));
+        }
+
+        /* PROJECTS */
 
         .project-card {
-            background: #fff;
-            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
-            transition: transform 0.4s, background-color 0.6s;
+            height: 100%;
+            transition: .35s;
         }
 
         .project-card:hover {
-            transform: scale(1.05);
-            background-color: #e0f7fa;
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, .35);
         }
 
-        .project-card .badge-pink {
-            background: var(--pink);
-            color: #fff;
+        .project-top {
+            height: 150px;
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(0, 212, 255, .12),
+                    rgba(124, 92, 255, .13));
+
+            font-size: 3rem;
+            color: var(--primary);
         }
 
+        .project-body {
+            padding: 25px;
+        }
+
+        .project-body p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 50px;
+            background: rgba(0, 212, 255, .08);
+            color: var(--primary);
+            font-size: .75rem;
+            margin: 3px;
+            border: 1px solid rgba(0, 212, 255, .14);
+        }
+
+        /* CONTACT */
 
         .contact-box {
-            background: #fff;
-            border-radius: 10px;
             padding: 35px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
         }
 
-        .contact-box input,
-        .contact-box textarea {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 12px;
-            width: 100%;
-            font-family: inherit;
-        }
-
-        .contact-box input:focus,
-        .contact-box textarea:focus {
-            outline: none;
-            border-color: var(--pink);
-            box-shadow: 0 0 0 3px rgba(233, 30, 99, .15);
-        }
-
-        .submit-btn {
-            background: var(--pink);
+        .form-control {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
             color: #fff;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.3s;
+            padding: 13px 15px;
+            border-radius: 12px;
         }
 
-        .submit-btn:hover {
-            background: #c2185b;
+        .form-control::placeholder {
+            color: #71839a;
         }
 
+        .form-control:focus {
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, .10);
+        }
+
+        .contact-item {
+            padding: 18px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .contact-item span {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* FOOTER */
 
         footer {
-            background: var(--dark);
+            padding: 35px 0;
+            border-top: 1px solid var(--border);
+            color: #71839a;
+        }
+
+        .social a {
+            width: 42px;
+            height: 42px;
+            display: inline-grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             color: #fff;
-            text-align: center;
-            padding: 18px;
-            font-size: 0.9rem;
+            margin-right: 8px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .social a:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:991px) {
+
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .floating-card {
+                right: 5px;
+            }
+        }
+
+        @media(max-width:575px) {
+
+            section {
+                padding: 75px 0;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                margin-left: 5px;
+                padding-left: 28px;
+            }
+
+            .timeline-dot {
+                left: -37px;
+            }
+
         }
     </style>
 </head>
 
 <body>
 
+    <!-- ================= NAVBAR ================= -->
 
     <nav class="navbar navbar-expand-lg fixed-top">
+
         <div class="container">
-            <a class="navbar-brand" href="#home">SANGRAM</a>
+
+            <a class="navbar-brand" href="#home">
+                SANGRAM<span> </span>
+            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+
                 <span class="navbar-toggler-icon"></span>
+
             </button>
+
             <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+
                 </ul>
+
             </div>
+
         </div>
     </nav>
 
-    <section id="home" class="d-flex align-items-center">
-        <div class="container ps-lg-5">
-            <h3>Hi, I'M</h3>
-            <h1>SANGRAM PAWAR</h1>
-            <p>I build beautiful, responsive and user-friendly<br>websites using HTML, CSS and JavaScript.</p>
-            <div class="mt-4 d-flex flex-wrap gap-3">
-                <a href="#projects" class="btn btn-pink">View Projects</a>
-                <a href="#contact" class="btn btn-outline-light">Contact Me</a>
-            </div>
-        </div>
-    </section>
 
-    <section id="about" class="container py-5">
-        <h2 class="section-title">About Me</h2>
-        <div class="row align-items-center g-4">
-            <div class="col-12 col-md-4">
-                <div class="profile-img-wrap">
-                    <img src="passport1.jpg" alt="Sangram Pawar"
-                        onerror="this.src='https://via.placeholder.com/220x220?text=SP'" />
-                </div>
-            </div>
-            <div class="col-12 col-md-8 about-text">
-                <h3 class="mb-3">Hello! I'm SANGRAM PAWAR</h3>
-                <p>I am a passionate Frontend Developer who loves to create beautiful and functional websites.
-                    I enjoy turning ideas into reality through code.</p>
-                <ul class="list-unstyled mt-3">
-                    <li class="mb-1"><strong>Name:</strong> Sangram Pawar</li>
-                    <li class="mb-1"><strong>Email:</strong> sangram.m.pawar55@gmail.com</li>
-                    <li class="mb-1"><strong>From:</strong> Newasa, Ahilyanagar</li>
-                </ul>
-                <a href="#contact" class="btn btn-pink mt-3">Hire Me</a>
-            </div>
-        </div>
-    </section>
+    <!-- ================= HERO ================= -->
 
+    <section id="home" class="hero">
 
-    <section id="skills" class="container py-5">
-        <h2 class="section-title">My Skills</h2>
-        <div class="row g-4 justify-content-center">
-            <!-- HTML -->
-            <div class="col-6 col-sm-4 col-md-3">
-                <div class="skill-card">
-                    <i class="bi bi-filetype-html"></i>
-                    <h5 class="mt-2">HTML</h5>
-                    <div class="progress mt-2" style="height:8px;">
-                        <div class="progress-bar" style="width:90%;background:var(--pink);"></div>
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-7">
+
+                    <span class="hero-badge">
+                        <i class="bi bi-stars"></i>
+                        Available for Opportunities
+                    </span>
+
+                    <h1>
+                        SANGRAM<br>
+                        <span class="gradient-text">PAWAR</span>
+                    </h1>
+
+                    <h2>
+                        JAVA Developer
+                        &nbsp;•&nbsp;
+                        Web Designer
+                        &nbsp;•&nbsp;
+                        Tech Enthusiast
+                    </h2>
+
+                    <p class="mt-4">
+
+                        I create modern, responsive and user-focused web experiences
+                        using HTML, CSS, JavaScript and Bootstrap.
+
+                        I enjoy transforming ideas into clean interfaces and
+                        practical digital products.
+
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+
+                        <a href="#projects" class="btn btn-main">
+                            <i class="bi bi-grid me-2"></i>
+                            View Projects
+                        </a>
+
+                        <a href="#contact" class="btn btn-ghost">
+                            <i class="bi bi-send me-2"></i>
+                            Let's Connect
+                        </a>
+
                     </div>
-                    <small class="text-muted">90%</small>
+
                 </div>
-            </div>
-            <!-- CSS -->
-            <div class="col-6 col-sm-4 col-md-3">
-                <div class="skill-card">
-                    <i class="bi bi-filetype-css"></i>
-                    <h5 class="mt-2">CSS</h5>
-                    <div class="progress mt-2" style="height:8px;">
-                        <div class="progress-bar" style="width:85%;background:var(--pink);"></div>
+
+
+                <div class="col-lg-5">
+
+                    <div class="hero-card position-relative">
+
+                        <img src="sanga.png" alt="Sangram Pawar"
+                            onerror="this.src='https://via.placeholder.com/500x500?text=Sangram+Pawar'">
+
+
                     </div>
-                    <small class="text-muted">85%</small>
+
                 </div>
+
             </div>
-            <!-- JS -->
-            <div class="col-6 col-sm-4 col-md-3">
-                <div class="skill-card">
-                    <i class="bi bi-filetype-js"></i>
-                    <h5 class="mt-2">JavaScript</h5>
-                    <div class="progress mt-2" style="height:8px;">
-                        <div class="progress-bar" style="width:80%;background:var(--pink);"></div>
-                    </div>
-                    <small class="text-muted">80%</small>
-                </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3">
-                <div class="skill-card">
-                    <i class="bi bi-bootstrap"></i>
-                    <h5 class="mt-2">Bootstrap</h5>
-                    <div class="progress mt-2" style="height:8px;">
-                        <div class="progress-bar" style="width:75%;background:var(--pink);"></div>
-                    </div>
-                    <small class="text-muted">75%</small>
-                </div>
-            </div>
+
         </div>
+
     </section>
 
 
-    <section id="projects" class="container py-5">
-        <h2 class="section-title">My Projects</h2>
-        <div class="row g-4">
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="project-card h-100 p-4 text-center">
-                    <i class="bi bi-person-vcard fs-1 text-danger mb-3 d-block"></i>
-                    <h5>Portfolio Website</h5>
-                    <p class="text-muted small">A personal website built with HTML &amp; CSS</p>
-                    <span class="badge badge-pink">HTML</span>
-                    <span class="badge badge-pink ms-1">CSS</span>
-                </div>
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    ABOUT ME
+                </span>
+
+                <h2>
+                    Building with
+                    <span class="gradient-text">
+                        Purpose
+                    </span>
+                </h2>
+
+                <p>
+                    A developer focused on learning, creating and improving
+                    every project through practical experience.
+                </p>
+
             </div>
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="project-card h-100 p-4 text-center">
-                    <i class="bi bi-cart4 fs-1 text-danger mb-3 d-block"></i>
-                    <h5>E-commerce Website</h5>
-                    <p class="text-muted small">Responsive online store</p>
-                    <span class="badge badge-pink">HTML</span>
-                    <span class="badge badge-pink ms-1">CSS</span>
-                    <span class="badge badge-pink ms-1">JS</span>
+
+
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-5">
+
+                    <div class="glass about-img">
+
+                        <img src="sanga.png" alt="Sangram Pawar"
+                            onerror="this.src='https://via.placeholder.com/500x500?text=SP'">
+
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="project-card h-100 p-4 text-center">
-                    <i class="bi bi-speedometer2 fs-1 text-danger mb-3 d-block"></i>
-                    <h5>Dashboard Design</h5>
-                    <p class="text-muted small">Modern admin UI</p>
-                    <span class="badge badge-pink">Bootstrap</span>
-                    <span class="badge badge-pink ms-1">JS</span>
+
+
+                <div class="col-lg-7 about-copy">
+
+                    <h3 class="fw-bold mb-3">
+                        Hello! I'm Sangram Pawar.
+                    </h3>
+
+                    <p>
+
+                        I am a passionate Frontend Developer who loves creating
+                        beautiful, responsive and functional websites.
+
+                        I enjoy working with modern web technologies, solving UI
+                        problems and continuously improving my skills.
+
+                    </p>
+
+
+                    <div class="info-grid">
+
+                        <div class="info-item">
+
+                            <small>Name</small>
+
+                            <strong>
+                                Sangram Pawar
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <small>Email</small>
+
+                            <strong>
+                                sangram.m.pawar55@gmail.com
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <small>Location</small>
+
+                            <strong>
+                                Newasa, Ahilyanagar
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <small>Specialization</small>
+
+                            <strong>
+                                JAVA Development
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="d-flex gap-3 mt-4 flex-wrap">
+
+                        <a href="#contact" class="btn btn-main">
+                            Hire Me
+                        </a>
+
+                        <a href="#experience" class="btn btn-ghost">
+                            My Experience
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
+
+
+            <!-- STATS -->
+
+            <div class="row g-3 stats">
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="glass stat">
+
+                        <h3>4+</h3>
+
+                        <p>
+                            Core Skills
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="glass stat">
+
+                        <h3>3+</h3>
+
+                        <p>
+                            Projects
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="glass stat">
+
+                        <h3>1</h3>
+
+                        <p>
+                            Internship
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="glass stat">
+
+                        <h3>100%</h3>
+
+                        <p>
+                            Learning Mindset
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
     </section>
 
 
-    <section id="contact" class="container py-5">
-        <h2 class="section-title">Contact Me</h2>
-        <div class="contact-box mx-auto" style="max-width:750px;">
-            <div class="row g-3 mb-3">
-                <div class="col-12 col-md-6">
-                    <input type="text" placeholder="Your Name" />
+    <!-- ================= EXPERIENCE ================= -->
+
+    <section id="experience">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    EXPERIENCE
+                </span>
+
+                <h2>
+                    My
+                    <span class="gradient-text">
+                        Internship
+                    </span>
+                </h2>
+
+                <p>
+                    Professional exposure where I am building practical
+                    development and workplace skills.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="glass experience">
+
+                    <span class="timeline-dot"></span>
+
+                    <div class="d-flex justify-content-between flex-wrap gap-2">
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+                                Full Stack JAVA Developer
+                            </h3>
+
+                            <div class="company">
+                                Sumago Infotech Pvt. Ltd. — Nashik
+                            </div>
+
+                        </div>
+
+
+                        <div class="date">
+
+                            <i class="bi bi-briefcase me-1"></i>
+
+                            Internship
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="text-secondary mt-3 mb-2">
+
+                        Working in a professional IT environment and gaining
+                        hands-on exposure to frontend development, responsive
+                        UI design and real-world project workflows.
+
+                    </p>
+
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Developing responsive web pages using HTML,
+                            CSS, JavaScript and Bootstrap.
+                        </li>
+
+                        <li>
+                            Improving UI structure, responsiveness and
+                            user experience.
+                        </li>
+
+                        <li>
+                            Practicing clean, reusable and maintainable
+                            frontend code.
+                        </li>
+
+                        <li>
+                            Learning professional development workflow
+                            and project collaboration.
+                        </li>
+
+                    </ul>
+
                 </div>
-                <div class="col-12 col-md-6">
-                    <input type="email" placeholder="Your Email" />
-                </div>
+
             </div>
-            <div class="mb-3">
-                <textarea rows="5" placeholder="Your Message"></textarea>
-            </div>
-            <div class="text-center">
-                <button class="submit-btn">Send Message</button>
-            </div>
+
         </div>
+
     </section>
 
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    TECH STACK
+                </span>
+
+                <h2>
+                    My
+                    <span class="gradient-text">
+                        Skills
+                    </span>
+                </h2>
+
+                <p>
+                    Technologies I use to build responsive and modern interfaces.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- HTML -->
+
+                <div class="col-sm-6 col-lg-3">
+
+                    <div class="glass skill-card">
+
+                        <div class="skill-icon">
+                            <i class="bi bi-filetype-html"></i>
+                        </div>
+
+                        <h5>
+                            HTML5
+                        </h5>
+
+                        <p>
+                            Semantic, structured and accessible page layouts.
+                        </p>
+
+                        <div class="progress">
+
+                            <div class="progress-bar" style="width:90%">
+                            </div>
+
+                        </div>
+
+                        <small class="text-secondary">
+                            90%
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CSS -->
+
+                <div class="col-sm-6 col-lg-3">
+
+                    <div class="glass skill-card">
+
+                        <div class="skill-icon">
+                            <i class="bi bi-filetype-css"></i>
+                        </div>
+
+                        <h5>
+                            CSS3
+                        </h5>
+
+                        <p>
+                            Responsive layouts, animations and modern styling.
+                        </p>
+
+                        <div class="progress">
+
+                            <div class="progress-bar" style="width:85%">
+                            </div>
+
+                        </div>
+
+                        <small class="text-secondary">
+                            85%
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- JAVASCRIPT -->
+
+                <div class="col-sm-6 col-lg-3">
+
+                    <div class="glass skill-card">
+
+                        <div class="skill-icon">
+                            <i class="bi bi-filetype-js"></i>
+                        </div>
+
+                        <h5>
+                            JavaScript
+                        </h5>
+
+                        <p>
+                            Interactive interfaces and dynamic frontend behaviour.
+                        </p>
+
+                        <div class="progress">
+
+                            <div class="progress-bar" style="width:80%">
+                            </div>
+
+                        </div>
+
+                        <small class="text-secondary">
+                            80%
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOOTSTRAP -->
+
+                <div class="col-sm-6 col-lg-3">
+
+                    <div class="glass skill-card">
+
+                        <div class="skill-icon">
+                            <i class="bi bi-bootstrap"></i>
+                        </div>
+
+                        <h5>
+                            Bootstrap
+                        </h5>
+
+                        <p>
+                            Fast, responsive and mobile-first UI development.
+                        </p>
+
+                        <div class="progress">
+
+                            <div class="progress-bar" style="width:75%">
+                            </div>
+
+                        </div>
+
+                        <small class="text-secondary">
+                            75%
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECTS ================= -->
+
+    <section id="projects">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    SELECTED WORK
+                </span>
+
+                <h2>
+                    Featured
+                    <span class="gradient-text">
+                        Projects
+                    </span>
+                </h2>
+
+                <p>
+                    Some projects that demonstrate my design and development skills.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- PROJECT 1 -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="glass project-card">
+
+                        <div class="project-top">
+
+                            <i class="bi bi-person-vcard"></i>
+
+                        </div>
+
+                        <div class="project-body">
+
+                            <h4 class="fw-bold">
+                                Portfolio Website
+                            </h4>
+
+                            <p>
+
+                                A responsive personal portfolio designed to showcase
+                                profile, skills, projects and professional experience.
+
+                            </p>
+
+                            <span class="tag">
+                                HTML
+                            </span>
+
+                            <span class="tag">
+                                CSS
+                            </span>
+
+                            <span class="tag">
+                                Bootstrap
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROJECT 2 -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="glass project-card">
+
+                        <div class="project-top">
+
+                            <i class="bi bi-cart4"></i>
+
+                        </div>
+
+                        <div class="project-body">
+
+                            <h4 class="fw-bold">
+                                E-commerce Website
+                            </h4>
+
+                            <p>
+
+                                A responsive online store interface focused on clean
+                                product presentation and user-friendly navigation.
+
+                            </p>
+
+                            <span class="tag">
+                                HTML
+                            </span>
+
+                            <span class="tag">
+                                CSS
+                            </span>
+
+                            <span class="tag">
+                                JavaScript
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROJECT 3 -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="glass project-card">
+
+                        <div class="project-top">
+
+                            <i class="bi bi-speedometer2"></i>
+
+                        </div>
+
+                        <div class="project-body">
+
+                            <h4 class="fw-bold">
+                                Dashboard Design
+                            </h4>
+
+                            <p>
+
+                                A modern admin dashboard concept with responsive
+                                cards, navigation and professional visual design.
+
+                            </p>
+
+                            <span class="tag">
+                                Bootstrap
+                            </span>
+
+                            <span class="tag">
+                                JavaScript
+                            </span>
+
+                            <span class="tag">
+                                UI/UX
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    CONTACT
+                </span>
+
+                <h2>
+                    Let's Build Something
+                    <span class="gradient-text">
+                        Great
+                    </span>
+                </h2>
+
+                <p>
+                    Have an opportunity, project or idea?
+                    I'd love to connect.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4 align-items-stretch">
+
+
+                <div class="col-lg-5">
+
+                    <div class="glass h-100 p-4">
+
+                        <h4 class="fw-bold mb-3">
+                            Get in touch
+                        </h4>
+
+                        <p class="text-secondary">
+
+                            Feel free to reach out for opportunities,
+                            collaborations or project discussions.
+
+                        </p>
+
+
+                        <div class="contact-item">
+
+                            <i class="bi bi-envelope"></i>
+
+                            <div>
+
+                                <strong>
+                                    Email
+                                </strong>
+
+                                <br>
+
+                                <span>
+                                    sangram.m.pawar55@gmail.com
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                            <div>
+
+                                <strong>
+                                    Location
+                                </strong>
+
+                                <br>
+
+                                <span>
+                                    Newasa, Ahilyanagar
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <i class="bi bi-building"></i>
+
+                            <div>
+
+                                <strong>
+                                    Internship
+                                </strong>
+
+                                <br>
+
+                                <span>
+                                    Sumago Infotech Pvt. Ltd., Nashik
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-7">
+
+                    <div class="glass contact-box h-100">
+
+                        <form onsubmit="sendMessage(event)">
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+
+                                    <input class="form-control" type="text" placeholder="Your Name" required>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <input class="form-control" type="email" placeholder="Your Email" required>
+
+                                </div>
+
+
+                                <div class="col-12">
+
+                                    <input class="form-control" type="text" placeholder="Subject" required>
+
+                                </div>
+
+
+                                <div class="col-12">
+
+                                    <textarea class="form-control" rows="6" placeholder="Your Message" required>
+</textarea>
+
+                                </div>
+
+
+                                <div class="col-12">
+
+                                    <button class="btn btn-main" type="submit">
+
+                                        <i class="bi bi-send me-2"></i>
+
+                                        Send Message
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- ================= FOOTER ================= -->
 
     <footer>
-        <p>© 2026 Sangram Pawar | Portfolio Website</p>
+
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+
+            <div>
+                © 2026
+                <strong>Sangram Pawar</strong>.
+                All Rights Reserved.
+            </div>
+
+            <div class="social">
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/sangram-pawar-a52743413?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                    target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+
+                    <i class="bi bi-linkedin"></i>
+
+                </a>
+
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/sangram_pawar__07?utm_source=qr&igsh=MWZ3aTlreXowY3d4"
+                    target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+
+                    <i class="bi bi-instagram"></i>
+
+                </a>
+
+
+                <!-- GitHub -->
+                <a href="https://github.com/sangrampawar7" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+                    title="GitHub">
+
+                    <i class="bi bi-github"></i>
+
+                </a>
+
+
+                <!-- Email -->
+                <a href="mailto:sangram.m.pawar55@gmail.com" aria-label="Email" title="Send Email">
+
+                    <i class="bi bi-envelope"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ================= JAVASCRIPT ================= -->
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 
     <script>
+
         document.querySelectorAll('a[href^="#"]').forEach(a => {
+
             a.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-                // close mobile menu
-                const nav = document.getElementById('navMenu');
-                if (nav.classList.contains('show')) {
-                    new bootstrap.Collapse(nav).hide();
+
+                const target =
+                    document.querySelector(a.getAttribute('href'));
+
+                if (target) {
+
+                    e.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                    const nav =
+                        document.getElementById("navMenu");
+
+                    if (nav.classList.contains("show")) {
+
+                        new bootstrap.Collapse(nav).hide();
+
+                    }
+
                 }
+
             });
+
         });
+
+
+        function sendMessage(e) {
+
+            e.preventDefault();
+
+            alert(
+                "Thank you! Your message has been received."
+            );
+
+        }
+
     </script>
 
 </body>
